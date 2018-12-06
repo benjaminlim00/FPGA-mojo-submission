@@ -340,7 +340,7 @@ module mojo_top_0 (
       end
     endcase
     
-    case (M_myAlu_fout)
+    case (M_dec_ctr_digits[0+3-:4] + M_dec_ctr_digits[4+3-:4] * 4'ha + M_dec_ctr_digits[8+3-:4] * 7'h64 + M_dec_ctr_digits[12+3-:4] * 10'h3e8)
       2'h3: begin
         M_redcount_d = 1'h0;
         M_greencount_d = 1'h0;

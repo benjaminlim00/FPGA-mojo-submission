@@ -93,12 +93,6 @@
 
 <msg type="warning" file="Xst" num="2170" delta="new" >Unit <arg fmt="%s" index="1">mojo_top_0</arg> : the following signal(s) form a combinatorial loop: </msg>
 
-<msg type="warning" file="Xst" num="2170" delta="new" >Unit <arg fmt="%s" index="1">mojo_top_0</arg> : the following signal(s) form a combinatorial loop: </msg>
-
-<msg type="warning" file="Xst" num="2170" delta="new" >Unit <arg fmt="%s" index="1">mojo_top_0</arg> : the following signal(s) form a combinatorial loop: </msg>
-
-<msg type="warning" file="Xst" num="2170" delta="new" >Unit <arg fmt="%s" index="1">mojo_top_0</arg> : the following signal(s) form a combinatorial loop: </msg>
-
 <msg type="info" file="Xst" num="2261" delta="new" >The FF/Latch &lt;<arg fmt="%s" index="1">ctr/M_ctr_q_16</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">mojo_top_0</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;seg/ctr/M_ctr_q_16&gt; </arg>
 </msg>
 

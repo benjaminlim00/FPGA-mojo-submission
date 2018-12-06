@@ -3,7 +3,7 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 --> 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.14 secs
+Total CPU time to Xst completion: 0.08 secs
  
 --> Reading design: mojo_top_0.prj
 
@@ -148,12 +148,12 @@ INFO:Xst:3210 - "C:/Users/benja/Documents/mojo/1d/FPGA-7up-Game/work/planAhead/c
     Found 1-bit register for signal <redled>.
     Found 1-bit register for signal <greenled>.
     Found 2-bit register for signal <M_seven_check_q>.
-    Found 9-bit adder for signal <n0191[8:0]> created at line 167.
-    Found 10-bit adder for signal <n0195> created at line 167.
+    Found 9-bit adder for signal <n0182[8:0]> created at line 167.
+    Found 10-bit adder for signal <n0186> created at line 167.
     Found 10-bit adder for signal <GND_1_o_M_dec_ctr_digits[15]_add_15_OUT> created at line 167.
     Found 4x10-bit multiplier for signal <M_myAlu_b<13:0>> created at line 165.
     Found 4x4-bit multiplier for signal <M_dec_ctr_digits[7]_PWR_1_o_MuLt_10_OUT> created at line 167.
-    Found 4x7-bit multiplier for signal <n0175> created at line 167.
+    Found 4x7-bit multiplier for signal <n0166> created at line 167.
     Found 1-bit tristate buffer for signal <spi_miso> created at line 102
     Found 1-bit tristate buffer for signal <spi_channel<3>> created at line 102
     Found 1-bit tristate buffer for signal <spi_channel<2>> created at line 102
@@ -343,8 +343,8 @@ Unit <decimal_counter_10> synthesized (advanced).
 
 Synthesizing (advanced) Unit <mojo_top_0>.
 	The following adders/subtractors are grouped into adder tree <Madd_GND_1_o_M_dec_ctr_digits[15]_add_15_OUT1> :
- 	<Madd_n0191[8:0]> in block <mojo_top_0>, 	<Madd_n0195> in block <mojo_top_0>, 	<Madd_GND_1_o_M_dec_ctr_digits[15]_add_15_OUT> in block <mojo_top_0>.
-	Multiplier <Mmult_n0175> in block <mojo_top_0> and adder/subtractor <ADDER_FOR_MULTADD_Madd1> in block <mojo_top_0> are combined into a MAC<Maddsub_n0175>.
+ 	<Madd_n0182[8:0]> in block <mojo_top_0>, 	<Madd_n0186> in block <mojo_top_0>, 	<Madd_GND_1_o_M_dec_ctr_digits[15]_add_15_OUT> in block <mojo_top_0>.
+	Multiplier <Mmult_n0166> in block <mojo_top_0> and adder/subtractor <ADDER_FOR_MULTADD_Madd1> in block <mojo_top_0> are combined into a MAC<Maddsub_n0166>.
 	Multiplier <Mmult_M_dec_ctr_digits[7]_PWR_1_o_MuLt_10_OUT> in block <mojo_top_0> and adder/subtractor <ADDER_FOR_MULTADD_Madd> in block <mojo_top_0> are combined into a MAC<Maddsub_M_dec_ctr_digits[7]_PWR_1_o_MuLt_10_OUT>.
 Unit <mojo_top_0> synthesized (advanced).
 
@@ -391,10 +391,7 @@ Macro Statistics
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
-WARNING:Xst:2170 - Unit mojo_top_0 : the following signal(s) form a combinatorial loop: M_myAlu_fout[15]_GND_1_o_equal_68_o, myAlu/add/Maddsub_out_cy<13>, myAlu/add/Maddsub_out_cy<3>, myAlu/add/Maddsub_out_cy<12>, M_myAlu_fout<3>, myAlu/add/Maddsub_out_cy<5>, myAlu/add/Maddsub_out_cy<7>, myAlu/add/Maddsub_out_cy<4>, M_seven_check_d<1>, myAlu/add/Maddsub_out_cy<6>, myAlu/add/Maddsub_out_cy<9>, myAlu/add/Maddsub_out_lut<3>, myAlu/add/Maddsub_out_cy<8>, myAlu/add/Maddsub_out_cy<11>, M_myAlu_fout<15>, myAlu/add/Maddsub_out_cy<14>, myAlu/add/Maddsub_out_cy<10>.
-WARNING:Xst:2170 - Unit mojo_top_0 : the following signal(s) form a combinatorial loop: M_myAlu_fout[15]_GND_1_o_equal_75_o, myAlu/add/Maddsub_out_lut<13>, M_myAlu_fout<13>.
-WARNING:Xst:2170 - Unit mojo_top_0 : the following signal(s) form a combinatorial loop: myAlu/add/Maddsub_out_lut<12>, M_myAlu_fout<12>, _n0208_inv.
-WARNING:Xst:2170 - Unit mojo_top_0 : the following signal(s) form a combinatorial loop: M_myAlu_fout<14>.
+WARNING:Xst:2170 - Unit mojo_top_0 : the following signal(s) form a combinatorial loop: myAlu/add/Maddsub_out_cy<13>, myAlu/add/Maddsub_out_cy<10>, myAlu/add/Maddsub_out_cy<9>, myAlu/add/Maddsub_out_cy<11>, myAlu/add/Maddsub_out_cy<12>, myAlu/add/Maddsub_out_cy<5>, myAlu/add/Maddsub_out_cy<4>, M_myAlu_fout<15>, M_myAlu_fout[15]_GND_1_o_equal_68_o, myAlu/add/Maddsub_out_lut<3>, myAlu/add/Maddsub_out_cy<3>, myAlu/add/Maddsub_out_cy<8>, M_seven_check_d<1>, myAlu/add/Maddsub_out_cy<7>, myAlu/add/Maddsub_out_cy<14>, myAlu/add/Maddsub_out_cy<6>, M_myAlu_fout<3>.
 WARNING:Xst:2170 - Unit mojo_top_0 : the following signal(s) form a combinatorial loop: M_myAlu_fout<15>.
 
 Optimizing unit <mojo_top_0> ...
@@ -455,22 +452,23 @@ Top Level Output File Name         : mojo_top_0.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 287
+# BELS                             : 279
 #      GND                         : 5
-#      INV                         : 7
+#      INV                         : 8
 #      LUT1                        : 46
-#      LUT2                        : 27
-#      LUT3                        : 12
+#      LUT2                        : 28
+#      LUT3                        : 13
 #      LUT4                        : 24
-#      LUT5                        : 9
-#      LUT6                        : 41
+#      LUT5                        : 12
+#      LUT6                        : 27
 #      MUXCY                       : 61
 #      MUXF7                       : 2
 #      VCC                         : 3
 #      XORCY                       : 50
 # FlipFlops/Latches                : 54
-#      FD                          : 17
+#      FD                          : 1
 #      FDR                         : 33
+#      FDRE                        : 16
 #      FDS                         : 4
 # Clock Buffers                    : 1
 #      BUFGP                       : 1
@@ -489,14 +487,14 @@ Selected Device : 6slx9tqg144-2
 
 Slice Logic Utilization: 
  Number of Slice Registers:              54  out of  11440     0%  
- Number of Slice LUTs:                  166  out of   5720     2%  
-    Number used as Logic:               166  out of   5720     2%  
+ Number of Slice LUTs:                  158  out of   5720     2%  
+    Number used as Logic:               158  out of   5720     2%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:    172
-   Number with an unused Flip Flop:     118  out of    172    68%  
-   Number with an unused LUT:             6  out of    172     3%  
-   Number of fully used LUT-FF pairs:    48  out of    172    27%  
+ Number of LUT Flip Flop pairs used:    177
+   Number with an unused Flip Flop:     123  out of    177    69%  
+   Number with an unused LUT:            19  out of    177    10%  
+   Number of fully used LUT-FF pairs:    35  out of    177    19%  
    Number of unique control sets:         9
 
 IO Utilization: 
@@ -541,7 +539,7 @@ Timing Summary:
 ---------------
 Speed Grade: -2
 
-   Minimum period: 20.499ns (Maximum Frequency: 48.783MHz)
+   Minimum period: 19.855ns (Maximum Frequency: 50.365MHz)
    Minimum input arrival time before clock: 3.526ns
    Maximum output required time after clock: 7.374ns
    Maximum combinational path delay: No path found
@@ -552,32 +550,32 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 20.499ns (frequency: 48.783MHz)
-  Total number of paths / destination ports: 1182643 / 103
+  Clock period: 19.855ns (frequency: 50.365MHz)
+  Total number of paths / destination ports: 1319556 / 135
 -------------------------------------------------------------------------
-Delay:               20.499ns (Levels of Logic = 32)
+Delay:               19.855ns (Levels of Logic = 31)
   Source:            dec_ctr/dctr_gen_0[3].dctr/M_val_q_0 (FF)
-  Destination:       dec_ctr/dctr_gen_0[1].dctr/M_val_q_0 (FF)
+  Destination:       dec_ctr/dctr_gen_0[2].dctr/M_val_q_1 (FF)
   Source Clock:      clk rising
   Destination Clock: clk rising
 
-  Data Path: dec_ctr/dctr_gen_0[3].dctr/M_val_q_0 to dec_ctr/dctr_gen_0[1].dctr/M_val_q_0
+  Data Path: dec_ctr/dctr_gen_0[3].dctr/M_val_q_0 to dec_ctr/dctr_gen_0[2].dctr/M_val_q_1
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q              20   0.525   1.286  M_val_q_0 (value<0>)
+     FDRE:C->Q            20   0.525   1.286  M_val_q_0 (value<0>)
      end scope: 'dec_ctr/dctr_gen_0[3].dctr:value<0>'
      end scope: 'dec_ctr:digits<12>'
      begin scope: 'myAlu:M_val_q_0'
      begin scope: 'myAlu/add:M_val_q_0'
      LUT2:I1->O            1   0.254   0.000  Maddsub_out_lut<3> (Maddsub_out_lut<3>)
-     XORCY:LI->O          13   0.149   1.097  Maddsub_out_xor<3> (out<3>)
+     XORCY:LI->O           7   0.149   0.909  Maddsub_out_xor<3> (out<3>)
      MUXCY:DI->O           1   0.181   0.000  Maddsub_out_cy<3> (Maddsub_out_cy<3>)
-     XORCY:CI->O          13   0.206   1.097  Maddsub_out_xor<4> (out<4>)
+     XORCY:CI->O           7   0.206   0.909  Maddsub_out_xor<4> (out<4>)
      MUXCY:DI->O           1   0.181   0.000  Maddsub_out_cy<4> (Maddsub_out_cy<4>)
-     XORCY:CI->O          10   0.206   1.007  Maddsub_out_xor<5> (out<5>)
+     XORCY:CI->O           8   0.206   0.943  Maddsub_out_xor<5> (out<5>)
      MUXCY:DI->O           1   0.181   0.000  Maddsub_out_cy<5> (Maddsub_out_cy<5>)
-     XORCY:CI->O          10   0.206   1.007  Maddsub_out_xor<6> (out<6>)
+     XORCY:CI->O           7   0.206   0.909  Maddsub_out_xor<6> (out<6>)
      MUXCY:DI->O           1   0.181   0.000  Maddsub_out_cy<6> (Maddsub_out_cy<6>)
      XORCY:CI->O           2   0.206   0.725  Maddsub_out_xor<7> (out<7>)
      MUXCY:DI->O           1   0.181   0.000  Maddsub_out_cy<7> (Maddsub_out_cy<7>)
@@ -587,25 +585,24 @@ Delay:               20.499ns (Levels of Logic = 32)
      MUXCY:DI->O           1   0.181   0.000  Maddsub_out_cy<9> (Maddsub_out_cy<9>)
      XORCY:CI->O           2   0.206   0.725  Maddsub_out_xor<10> (out<10>)
      MUXCY:DI->O           1   0.181   0.000  Maddsub_out_cy<10> (Maddsub_out_cy<10>)
-     XORCY:CI->O           3   0.206   0.765  Maddsub_out_xor<11> (out<11>)
+     XORCY:CI->O           2   0.206   0.725  Maddsub_out_xor<11> (out<11>)
      MUXCY:DI->O           1   0.181   0.000  Maddsub_out_cy<11> (Maddsub_out_cy<11>)
-     XORCY:CI->O           3   0.206   0.765  Maddsub_out_xor<12> (out<12>)
+     XORCY:CI->O           2   0.206   0.725  Maddsub_out_xor<12> (out<12>)
      MUXCY:DI->O           1   0.181   0.000  Maddsub_out_cy<12> (Maddsub_out_cy<12>)
-     XORCY:CI->O           3   0.206   0.765  Maddsub_out_xor<13> (out<13>)
+     XORCY:CI->O           2   0.206   0.725  Maddsub_out_xor<13> (out<13>)
      MUXCY:DI->O           1   0.181   0.000  Maddsub_out_cy<13> (Maddsub_out_cy<13>)
-     XORCY:CI->O           3   0.206   0.874  Maddsub_out_xor<14> (out<14>)
+     XORCY:CI->O           2   0.206   0.834  Maddsub_out_xor<14> (out<14>)
      end scope: 'myAlu/add:out<14>'
      end scope: 'myAlu:fout<14>'
-     LUT6:I4->O           13   0.250   1.098  _n0206 (_n0206)
-     LUT2:I1->O            2   0.254   0.726  Mmux_M_dec_ctr_resetSignal12 (M_dec_ctr_resetSignal)
-     begin scope: 'dec_ctr:resetSignal'
-     begin scope: 'dec_ctr/dctr_gen_0[1].dctr:resetSignal'
-     LUT6:I5->O            5   0.254   0.841  _n0026_inv1 (_n0026_inv)
-     LUT3:I2->O            1   0.254   0.000  M_val_q_0_rstpot (M_val_q_0_rstpot)
-     FD:D                      0.074          M_val_q_0
+     LUT6:I4->O            4   0.250   0.804  M_myAlu_fout[15]_GND_1_o_equal_68_o<15>1 (M_myAlu_fout[15]_GND_1_o_equal_68_o<15>1)
+     LUT6:I5->O            8   0.254   0.944  Mmux_M_dec_ctr_resetSignal1 (M_dec_ctr_resetSignal)
+     LUT6:I5->O            5   0.254   0.840  Reset_OR_DriverANDClockEnable12 (Reset_OR_DriverANDClockEnable12)
+     begin scope: 'dec_ctr:Reset_OR_DriverANDClockEnable12'
+     begin scope: 'dec_ctr/dctr_gen_0[0].dctr:Reset_OR_DriverANDClockEnable12'
+     FDRE:R                    0.459          M_val_q_1
     ----------------------------------------
-    Total                     20.499ns (6.271ns logic, 14.228ns route)
-                                       (30.6% logic, 69.4% route)
+    Total                     19.855ns (6.402ns logic, 13.453ns route)
+                                       (32.2% logic, 67.8% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
@@ -641,7 +638,7 @@ Offset:              7.374ns (Levels of Logic = 4)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q              20   0.525   1.562  M_val_q_0 (value<0>)
+     FDRE:C->Q            20   0.525   1.562  M_val_q_0 (value<0>)
      end scope: 'dec_ctr/dctr_gen_0[3].dctr:value<0>'
      end scope: 'dec_ctr:digits<12>'
      LUT6:I2->O            7   0.254   1.186  Sh431 (Sh43)
@@ -669,20 +666,20 @@ Clock to Setup on destination clock clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |   20.499|         |         |         |
+clk            |   19.855|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 12.00 secs
-Total CPU time to Xst completion: 11.97 secs
+Total REAL time to Xst completion: 7.00 secs
+Total CPU time to Xst completion: 7.12 secs
  
 --> 
 
-Total memory usage is 252000 kilobytes
+Total memory usage is 252512 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   29 (   0 filtered)
+Number of warnings :   26 (   0 filtered)
 Number of infos    :   24 (   0 filtered)
 

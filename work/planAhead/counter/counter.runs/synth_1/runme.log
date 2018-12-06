@@ -102,12 +102,12 @@ INFO:Xst:3210 - "C:/Users/benja/Documents/mojo/1d/FPGA-7up-Game/work/planAhead/c
     Found 1-bit register for signal <redled>.
     Found 1-bit register for signal <greenled>.
     Found 2-bit register for signal <M_seven_check_q>.
-    Found 9-bit adder for signal <n0191[8:0]> created at line 167.
-    Found 10-bit adder for signal <n0195> created at line 167.
+    Found 9-bit adder for signal <n0182[8:0]> created at line 167.
+    Found 10-bit adder for signal <n0186> created at line 167.
     Found 10-bit adder for signal <GND_1_o_M_dec_ctr_digits[15]_add_15_OUT> created at line 167.
     Found 4x10-bit multiplier for signal <M_myAlu_b<13:0>> created at line 165.
     Found 4x4-bit multiplier for signal <M_dec_ctr_digits[7]_PWR_1_o_MuLt_10_OUT> created at line 167.
-    Found 4x7-bit multiplier for signal <n0175> created at line 167.
+    Found 4x7-bit multiplier for signal <n0166> created at line 167.
     Found 1-bit tristate buffer for signal <spi_miso> created at line 102
     Found 1-bit tristate buffer for signal <spi_channel<3>> created at line 102
     Found 1-bit tristate buffer for signal <spi_channel<2>> created at line 102
@@ -297,8 +297,8 @@ Unit <decimal_counter_10> synthesized (advanced).
 
 Synthesizing (advanced) Unit <mojo_top_0>.
 	The following adders/subtractors are grouped into adder tree <Madd_GND_1_o_M_dec_ctr_digits[15]_add_15_OUT1> :
- 	<Madd_n0191[8:0]> in block <mojo_top_0>, 	<Madd_n0195> in block <mojo_top_0>, 	<Madd_GND_1_o_M_dec_ctr_digits[15]_add_15_OUT> in block <mojo_top_0>.
-	Multiplier <Mmult_n0175> in block <mojo_top_0> and adder/subtractor <ADDER_FOR_MULTADD_Madd1> in block <mojo_top_0> are combined into a MAC<Maddsub_n0175>.
+ 	<Madd_n0182[8:0]> in block <mojo_top_0>, 	<Madd_n0186> in block <mojo_top_0>, 	<Madd_GND_1_o_M_dec_ctr_digits[15]_add_15_OUT> in block <mojo_top_0>.
+	Multiplier <Mmult_n0166> in block <mojo_top_0> and adder/subtractor <ADDER_FOR_MULTADD_Madd1> in block <mojo_top_0> are combined into a MAC<Maddsub_n0166>.
 	Multiplier <Mmult_M_dec_ctr_digits[7]_PWR_1_o_MuLt_10_OUT> in block <mojo_top_0> and adder/subtractor <ADDER_FOR_MULTADD_Madd> in block <mojo_top_0> are combined into a MAC<Maddsub_M_dec_ctr_digits[7]_PWR_1_o_MuLt_10_OUT>.
 Unit <mojo_top_0> synthesized (advanced).
 
@@ -345,10 +345,7 @@ Macro Statistics
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
-WARNING:Xst:2170 - Unit mojo_top_0 : the following signal(s) form a combinatorial loop: M_myAlu_fout[15]_GND_1_o_equal_68_o, myAlu/add/Maddsub_out_cy<13>, myAlu/add/Maddsub_out_cy<3>, myAlu/add/Maddsub_out_cy<12>, M_myAlu_fout<3>, myAlu/add/Maddsub_out_cy<5>, myAlu/add/Maddsub_out_cy<7>, myAlu/add/Maddsub_out_cy<4>, M_seven_check_d<1>, myAlu/add/Maddsub_out_cy<6>, myAlu/add/Maddsub_out_cy<9>, myAlu/add/Maddsub_out_lut<3>, myAlu/add/Maddsub_out_cy<8>, myAlu/add/Maddsub_out_cy<11>, M_myAlu_fout<15>, myAlu/add/Maddsub_out_cy<14>, myAlu/add/Maddsub_out_cy<10>.
-WARNING:Xst:2170 - Unit mojo_top_0 : the following signal(s) form a combinatorial loop: M_myAlu_fout[15]_GND_1_o_equal_75_o, myAlu/add/Maddsub_out_lut<13>, M_myAlu_fout<13>.
-WARNING:Xst:2170 - Unit mojo_top_0 : the following signal(s) form a combinatorial loop: myAlu/add/Maddsub_out_lut<12>, M_myAlu_fout<12>, _n0208_inv.
-WARNING:Xst:2170 - Unit mojo_top_0 : the following signal(s) form a combinatorial loop: M_myAlu_fout<14>.
+WARNING:Xst:2170 - Unit mojo_top_0 : the following signal(s) form a combinatorial loop: myAlu/add/Maddsub_out_cy<13>, myAlu/add/Maddsub_out_cy<10>, myAlu/add/Maddsub_out_cy<9>, myAlu/add/Maddsub_out_cy<11>, myAlu/add/Maddsub_out_cy<12>, myAlu/add/Maddsub_out_cy<5>, myAlu/add/Maddsub_out_cy<4>, M_myAlu_fout<15>, M_myAlu_fout[15]_GND_1_o_equal_68_o, myAlu/add/Maddsub_out_lut<3>, myAlu/add/Maddsub_out_cy<3>, myAlu/add/Maddsub_out_cy<8>, M_seven_check_d<1>, myAlu/add/Maddsub_out_cy<7>, myAlu/add/Maddsub_out_cy<14>, myAlu/add/Maddsub_out_cy<6>, M_myAlu_fout<3>.
 WARNING:Xst:2170 - Unit mojo_top_0 : the following signal(s) form a combinatorial loop: M_myAlu_fout<15>.
 
 Optimizing unit <mojo_top_0> ...
@@ -423,7 +420,7 @@ Timing Summary:
 ---------------
 Speed Grade: -2
 
-   Minimum period: 20.499ns (Maximum Frequency: 48.783MHz)
+   Minimum period: 19.855ns (Maximum Frequency: 50.365MHz)
    Minimum input arrival time before clock: 3.526ns
    Maximum output required time after clock: 7.374ns
    Maximum combinational path delay: No path found
