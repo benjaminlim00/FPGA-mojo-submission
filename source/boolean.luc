@@ -1,0 +1,20 @@
+module boolean (
+    input a[16],
+    input b[16],
+    input alufn[6],
+    output out[16],
+    output error[3]
+  ) {
+  
+  always {
+    out = 0;
+    error = 0;
+    case(alufn[3:0]) {
+      4b1000: out = a & b;      //AND
+      4b1110: out = a | b;      //OR
+      4b0110: out = a ^ b;      //XOR
+      4b1010: out = a;          //"A"
+      default: error = 3b100;
+    }
+  }
+}

@@ -1,0 +1,265 @@
+module mojo_top (
+    input clk,              // 50MHz clock
+    input rst_n,            // reset button (active low)
+    output led [8],         // 8 user controllable LEDs
+    input cclk,             // configuration clock, AVR ready when high
+    output spi_miso,        // AVR SPI MISO
+    input spi_ss,           // AVR SPI Slave Select
+    input spi_mosi,         // AVR SPI MOSI
+    input spi_sck,          // AVR SPI Clock
+    output spi_channel [4], // AVR general purpose pins (used by default to select ADC channel)
+    input avr_tx,           // AVR TX (FPGA RX)
+    output avr_rx,          // AVR RX (FPGA TX)
+    input avr_rx_busy,      // AVR RX buffer full
+    output io_led [3][8],   // LEDs on IO Shield
+    output io_seg [8],      // 7-segment LEDs on IO Shield
+    output io_sel [4],      // Digit select on IO Shield
+    input io_button [5],    // 5 buttons on IO Shield
+    input io_dip [3][8],     // DIP switches on IO Shield
+    input button,
+    output greenled,        //external greenled that lights up when user wins
+    output redled           //external redled that lights up when user loses
+  ) {
+  
+  sig rst;                  // reset signal
+  
+  .clk(clk) {
+    // The reset conditioner is used to synchronize the reset signal to the FPGA
+    // clock. This ensures the entire FPGA comes out of reset at the same time.
+    reset_conditioner reset_cond;
+    
+    edge_detector edge_detector (#RISE(1), #FALL(0));
+    
+    
+    .rst(rst) {
+      multi_seven_seg seg;
+      multi_dec_ctr dec_ctr;
+      counter ctr (#SIZE(1), #DIV(24));
+      
+      
+      dff seven_check[2];
+      dff activation;
+      dff button_pressed(#INIT(0));
+      dff button_activate(#INIT(0));
+      dff button_state;
+      dff lose;
+      dff resetSignal;
+      dff doilose;
+      dff redcount;
+      dff greencount;
+    }
+  }
+  //import the alu
+  alu myAlu;
+  
+  always {
+    activation.d = edge_detector.out;//button_activate.q;
+    reset_cond.in = ~rst_n;   // input raw inverted reset signal
+    rst = reset_cond.out;     // conditioned reset
+    
+    led = 8b0;
+    spi_miso = bz;            // not using SPI
+    spi_channel = bzzzz;      // not using flags
+    avr_rx = bz;              // not using serial port
+    
+    edge_detector.in = ctr.value;
+    dec_ctr.inc = activation.q;
+    seg.values = dec_ctr.digits;
+    
+    
+    io_seg = ~seg.seg; // connect segments to the driver
+    io_sel = seg.sel; // connect digit select to the driver
+    io_led = io_dip;   // connect the DIP switches to the LEDs
+    
+    //initialize the 7seg values
+    dec_ctr.resetSignal = 0;
+    dec_ctr.digitsOverride[0] = 0;
+    dec_ctr.digitsOverride[1] = 0;
+    dec_ctr.digitsOverride[2] = 0;
+    dec_ctr.digitsOverride[3] = 0;
+    
+    
+    // red led turns on if redcount is 1. 
+    case(redcount.q) {
+      1:redled = 1;
+      default: redled = 0;
+    }
+    
+    // green led turns on if redcount is 1. 
+    case(greencount.q) {
+      1:greenled = 1;
+      default: greenled = 0;
+    }
+    
+    
+    
+    if (lose.q) {  //if we have lost: reset counter to 0000
+      dec_ctr.resetSignal = 1;
+      dec_ctr.digitsOverride[3] = 0;
+      dec_ctr.digitsOverride[2] = 0;
+      dec_ctr.digitsOverride[1] = 0;
+      dec_ctr.digitsOverride[0] = 0;
+    }
+    
+    
+    
+    
+    
+    
+    ////////////////////////////////
+    lose.d = 0;  // default to not lost yet.
+    //switch off all io_leds
+    io_led[0] = 8b00000000;
+    io_led[1] = 8b00000000;
+    io_led[2] = 8b00000000;
+    
+    // per digit check for 7
+    seven_check.d[0] = dec_ctr.digits[0] == 7 || dec_ctr.digits[1] == 7 || dec_ctr.digits[2] == 7 || dec_ctr.digits[3] == 7;
+    
+    // use alu to add 4 digits from decimal counter together
+    myAlu.alufn = 6b0;
+    myAlu.a = dec_ctr.digits[0];
+    myAlu.b = dec_ctr.digits[1] * 10;
+    myAlu.a = myAlu.fout;
+    myAlu.b = dec_ctr.digits[2] * 100;
+    myAlu.a = myAlu.fout;
+    myAlu.b = dec_ctr.digits[3] * 1000;
+    // now myAlu.fout should = dec_ctr.digits[0] + dec_ctr.digits[1] * 10 + dec_ctr.digits[2] * 100 + dec_ctr.digits[3] * 1000
+    
+    /////////////IF YOU PRESS ON THESE NUMBERS, YOU LOSE!
+    case(dec_ctr.digits[0] + dec_ctr.digits[1] * 10 + dec_ctr.digits[2] * 100 + dec_ctr.digits[3] * 1000) {
+    //case(myAlu.fout) {
+      1: doilose.d = 1;
+      2: doilose.d = 1;
+      3: doilose.d = 1;
+      4: doilose.d = 1;
+      5: doilose.d = 1;
+      9: doilose.d = 1;
+      10: doilose.d = 1;
+      11: doilose.d = 1;
+      12: doilose.d = 1;
+      19: doilose.d = 1;
+      23: doilose.d = 1;
+      24: doilose.d = 1;
+      25: doilose.d = 1;
+      30: doilose.d = 1;
+      31: doilose.d = 1;
+      32: doilose.d = 1;
+      33: doilose.d = 1;
+      39: doilose.d = 1;
+      40: doilose.d = 1;
+      44: doilose.d = 1;
+      45: doilose.d = 1;
+      51: doilose.d = 1;
+      52: doilose.d = 1;
+      53: doilose.d = 1;
+      54: doilose.d = 1;
+      59: doilose.d = 1;
+      60: doilose.d = 1;
+      61: doilose.d = 1;
+      65: doilose.d = 1;
+      81: doilose.d = 1;
+      82: doilose.d = 1;
+      89: doilose.d = 1;
+      93: doilose.d = 1;
+      94: doilose.d = 1;
+      95: doilose.d = 1;
+      default: doilose.d = 0;
+  }
+    //doilose = 1 means lose , code logic below with button input
+      
+    
+    // check if the number is divisible by 7.
+    //case(dec_ctr.digits[0] + dec_ctr.digits[1] * 10 + dec_ctr.digits[2] * 100 + dec_ctr.digits[3] * 1000) {
+    case(myAlu.fout) {
+      7: seven_check.d[1] = 1;
+      14: seven_check.d[1] = 1;
+      21: seven_check.d[1] = 1;
+      28: seven_check.d[1] = 1;
+      35: seven_check.d[1] = 1;
+      42: seven_check.d[1] = 1;
+      49: seven_check.d[1] = 1;
+      56: seven_check.d[1] = 1;
+      63: seven_check.d[1] = 1;
+      70: seven_check.d[1] = 1;
+      77: seven_check.d[1] = 1;
+      84: seven_check.d[1] = 1;
+      91: seven_check.d[1] = 1;
+      98: seven_check.d[1] = 1;
+      //check if we have reached 100
+      100: // logic that says we win. - turn greenled on
+        greencount.d = 1;
+        dec_ctr.resetSignal = 1;
+        dec_ctr.digitsOverride[3] = 0;
+        dec_ctr.digitsOverride[2] = 0;
+        dec_ctr.digitsOverride[1] = 0;
+        dec_ctr.digitsOverride[0] = 0;
+     
+      
+      default: seven_check.d[1] = 0;
+    }
+    
+    
+    // seven up game code /////////////////////////////////////////////////////////////////////////////////////////////
+    
+    //button state
+    case(button) {  //testing when the button is pressed
+      0:
+        button_state.d = 1;  // tracks when button is pressed - because the button is a active low. 
+      default:
+        button_state.d = 0;
+    }
+    
+    /////RESET THE REDLED & GREENLED TO TURN IT OFF
+    //case(dec_ctr.digits[0] + dec_ctr.digits[1] * 10 + dec_ctr.digits[2] * 100 + dec_ctr.digits[3] * 1000){
+    case(myAlu.fout){
+      3:  redcount.d = 0;
+          greencount.d = 0;
+      6:  redcount.d = 0;
+      9:  redcount.d = 0;
+      12:  redcount.d = 0;
+      15:  redcount.d = 0;
+      18:  redcount.d = 0;
+      21:  redcount.d = 0;
+      24:  redcount.d = 0;
+      27:  redcount.d = 0;
+      30:  redcount.d = 0;
+      33:  redcount.d = 0;
+      36:  redcount.d = 0;
+      39:  redcount.d = 0;
+      42:  redcount.d = 0;
+      45:  redcount.d = 0;
+      48:  redcount.d = 0;
+      51:  redcount.d = 0;
+      54:  redcount.d = 0;
+      57:  redcount.d = 0;
+      60:  redcount.d = 0;
+      63:  redcount.d = 0;
+      66:  redcount.d = 0;
+      69:  redcount.d = 0;
+      72:  redcount.d = 0;
+      75:  redcount.d = 0;
+      78:  redcount.d = 0;
+      81:  redcount.d = 0;
+      84:  redcount.d = 0;
+      87:  redcount.d = 0;
+      90:  redcount.d = 0;
+      93:  redcount.d = 0;
+      96:  redcount.d = 0;
+      99:  redcount.d = 0;
+    }
+    
+    //lose if we never press the button when on a 7up number.
+    if ((button_state.q == 0 && seven_check.q[0] == 1) || (button_state.q == 0 && seven_check.q[1] == 1)) {
+      lose.d = 1;  //we lose!! we flash the led on the left to show this and restart the game
+      redcount.d = 1;
+    }
+    
+    //when pressing button while doilose = 1, -> lose the game.
+    //lose if press button when not supposed to
+    if(button_state.q == 1 && doilose.q == 1){
+      lose.d = 1;  //we lose!! we flash the red led to show this and restart the game
+      redcount.d = 1;
+    }
+  }
+}

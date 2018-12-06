@@ -1,0 +1,9 @@
+NET "button" LOC = P51;
+NET "button" IOSTANDARD = LVTTL;
+NET "button" PULLUP;
+NET "redled" LOC = P41;
+NET "redled" IOSTANDARD = LVTTL;
+NET "redled" PULLUP;
+NET "greenled" LOC = P35;
+NET "greenled" IOSTANDARD = LVTTL;
+NET "greenled" PULLUP;

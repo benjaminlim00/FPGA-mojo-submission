@@ -1,0 +1,15 @@
+module zvnvalues (
+    input a[16],
+    input b[16],
+    input sout[16],  //we get the inputs from adder
+    input alufn[6],
+    output z,
+    output v,
+    output n
+  ) {
+  always {
+    z = ~|(sout); //Z is true when S input is all zero
+    v = (a[15] & (b[15] ^ alufn[0]) & !sout[15]) | (!a[15] & !(b[15] ^ alufn[0]) & sout[15]);  //V is true when addition operation overflows
+    n = sout[15];  //N is true when S is negative (MSB is 1)
+  }
+}

@@ -1,0 +1,63 @@
+module alu (
+    input a[16],  // 16 bit input a
+    input b[16],  // 16 bit input b
+    input alufn[6],  //6 bit input for alufn
+    output fout[16], // the final output
+    output error[3],
+    output overflow
+  ) {
+
+  adder add;  //import all functionality of ALU.
+  compare cmp;
+  shifter shift;
+  boolean bool;
+  zvnvalues zvn;
+  
+  always {
+    //inputs of add
+    add.a = a;
+    add.b = b;
+    add.alufn = alufn;
+    
+    //inputs of zvn
+    zvn.a = a;
+    zvn.b = b;
+    zvn.alufn = alufn;
+    zvn.sout = add.out; //zvnvalues revceives input of adder
+    
+    //inputs of boolean
+    bool.a = a;
+    bool.b = b;
+    bool.alufn = alufn;
+    
+    //inputs of compare
+    cmp.z = zvn.z; //compare takes in output of zvnvalues as input
+    cmp.v = zvn.v;
+    cmp.n = zvn.n;
+    cmp.alufn = alufn;
+    
+    //inputs of shifter
+    shift.a = a;  
+    shift.b = b; 
+    shift.alufn = alufn;
+    
+    fout = 0;
+    error = 0;
+    overflow = 0;
+    case(alufn[5:4]) { // choosing which operation to do.
+      2b00:
+        fout = add.out;
+        error = add.error;
+        overflow = zvn.v;
+      2b01:
+        fout = bool.out;
+        error = bool.error;
+      2b10:
+        fout = shift.out;
+        error = shift.error;
+      2b11:
+        fout = cmp.out;
+        error = cmp.error;
+    } 
+  }
+}

@@ -1,0 +1,20 @@
+module compare (
+   input z,
+   input v,
+   input n,
+   input alufn[6],
+   output out[16],  //only using LSB bit
+   output error[3]
+  ) {
+
+  always {
+    out = 16b0;
+    error = 3b0;
+    case(alufn[2:1]) {             // choosing which comparison fucntion
+      2b01: out[0] = z;            // LSB = Z
+      2b10: out[0] = n ^ v;        // LSB = N XOR V
+      2b11: out[0] = z | (n ^ v);  // LSB = Z OR (N XOR V)
+      default: error = 3b010;
+    }    
+  }
+}

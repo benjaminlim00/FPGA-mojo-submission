@@ -1,0 +1,17 @@
+module adder (
+    input a[16],  // 16 bit input a
+    input b[16],  //16 bit input b
+    input alufn[6],  //6 bit input for alufn
+    output out[16], //16 bit outpout
+    output error[3]
+  ) {
+  
+  always {
+    out = 0;
+    error = 0;  // no possible invalid alufn here
+    case(alufn[0]) {
+      1b0: out = a+b; // perform addition
+      1b1: out = a-b; // perform subtraction
+    }
+  }
+}

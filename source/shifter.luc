@@ -1,0 +1,20 @@
+module shifter (
+    input a[16],
+    input b[16],
+    input alufn[6],
+    output out[16],
+    output error[3]
+  ) {
+
+  always {
+    out = 0;
+    error = 0;
+    case(alufn[1:0]) {
+      2b00: out = a << b[4:0]; //SHL, we need 4 bits to shift maximum 16 bits.
+      2b01: out = a >> b[4:0];  //SHR
+      2b11: out = a >>> b[4:0];  //SAR, arithemetic shift right
+      default: error = 3b001;
+    }
+  }
+}
+  
