@@ -23,6 +23,21 @@ To see the details of these <arg fmt="%s" index="4">info</arg> messages, please 
 <msg type="info" file="MapLib" num="562" delta="new" >No environment variables are currently set.
 </msg>
 
+<msg type="warning" file="MapLib" num="23" delta="new" >Short on signal <arg fmt="%s" index="1">greenled</arg> detected.
+</msg>
+
+<msg type="warning" file="MapLib" num="23" delta="new" >Short on signal <arg fmt="%s" index="1">greenled</arg> detected.
+</msg>
+
+<msg type="warning" file="MapLib" num="23" delta="new" >Short on signal <arg fmt="%s" index="1">greenled</arg> detected.
+</msg>
+
+<msg type="warning" file="MapLib" num="23" delta="new" >Short on signal <arg fmt="%s" index="1">greenled</arg> detected.
+</msg>
+
+<msg type="warning" file="MapLib" num="23" delta="new" >Short on signal <arg fmt="%s" index="1">greenled</arg> detected.
+</msg>
+
 <msg type="warning" file="MapLib" num="701" delta="new" >Signal <arg fmt="%s" index="1">spi_channel[3]</arg> connected to top level port <arg fmt="%s" index="2">spi_channel(3)</arg> has been removed.
 </msg>
 
@@ -57,9 +72,6 @@ To see the details of these <arg fmt="%s" index="4">info</arg> messages, please 
 </msg>
 
 <msg type="warning" file="PhysDesignRules" num="781" delta="new" ><arg fmt="%s" index="1">PULLUP</arg> on an active net. <arg fmt="%s" index="2">PULLUP</arg> of comp <arg fmt="%s" index="3">redled_PULLUP</arg> is set but the tri state is not configured. 
-</msg>
-
-<msg type="warning" file="PhysDesignRules" num="781" delta="new" ><arg fmt="%s" index="1">PULLUP</arg> on an active net. <arg fmt="%s" index="2">PULLUP</arg> of comp <arg fmt="%s" index="3">greenled_PULLUP</arg> is set but the tri state is not configured. 
 </msg>
 
 </messages>

@@ -5,7 +5,7 @@ C:\Xilinx\14.7\ISE_DS\ISE\.
    "mojo_top_0" is an NCD, version 3.2, device xc6slx9, package tqg144, speed -2
 Opened constraints file mojo_top_0.pcf.
 
-Thu Dec 06 16:50:15 2018
+Thu Dec 06 23:31:55 2018
 
 C:\Xilinx\14.7\ISE_DS\ISE\bin\nt\unwrapped\bitgen.exe -g Binary:Yes -g Compress -w -intstyle pa mojo_top_0_routed.ncd mojo_top_0.bit mojo_top_0.pcf 
 
@@ -131,12 +131,10 @@ There were 1 CONFIG constraint(s) processed from mojo_top_0.pcf.
 Running DRC.
 WARNING:PhysDesignRules:781 - PULLUP on an active net. PULLUP of comp
    redled_PULLUP is set but the tri state is not configured. 
-WARNING:PhysDesignRules:781 - PULLUP on an active net. PULLUP of comp
-   greenled_PULLUP is set but the tri state is not configured. 
-DRC detected 0 errors and 2 warnings.  Please see the previously displayed
+DRC detected 0 errors and 1 warnings.  Please see the previously displayed
 individual error or warning messages for more details.
 Creating bit map...
 Saving bit stream in "mojo_top_0.bit".
-Bitstream compression saved 1333888 bits.
+Bitstream compression saved 1485472 bits.
 Saving bit stream in "mojo_top_0.bin".
 Bitstream generation is complete.

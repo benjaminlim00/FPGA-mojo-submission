@@ -28,6 +28,9 @@ module shifter_13 (
       2'h3: begin
         out = a >>> b[0+4-:5];
       end
+      2'h2: begin
+        out = a * b;
+      end
       default: begin
         error = 3'h1;
       end

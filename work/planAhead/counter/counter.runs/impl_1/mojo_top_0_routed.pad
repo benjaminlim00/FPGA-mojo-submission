@@ -1,7 +1,7 @@
 Release 14.7 - par P.20131013 (nt)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-Thu Dec 06 16:49:59 2018
+Thu Dec 06 23:31:31 2018
 
 
 # NOTE: This file is designed to be imported into a spreadsheet program
@@ -53,7 +53,7 @@ P31|||VCCO_3|||3|||||3.30||||
 P32||IOBS|IO_L2N_3|UNUSED||3|||||||||
 P33||IOBM|IO_L2P_3|UNUSED||3|||||||||
 P34||IOBS|IO_L1N_VREF_3|UNUSED||3|||||||||
-P35|greenled|IOB|IO_L1P_3|OUTPUT|LVTTL|3|12|SLOW|PULLUP|||LOCATED|NO|NONE|
+P35|greenled|IOB|IO_L1P_3|OUTPUT|LVTTL|3|12|SLOW||||LOCATED|NO|NONE|
 P36|||VCCAUX||||||||3.3||||
 P37|||PROGRAM_B_2||||||||||||
 P38|rst_n|IOB|IO_L65N_CSO_B_2|INPUT|LVTTL|2||||NONE||LOCATED|NO|NONE|

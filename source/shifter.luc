@@ -13,6 +13,10 @@ module shifter (
       2b00: out = a << b[4:0]; //SHL, we need 4 bits to shift maximum 16 bits.
       2b01: out = a >> b[4:0];  //SHR
       2b11: out = a >>> b[4:0];  //SAR, arithemetic shift right
+      //self made multipler
+      2b10: out = a * b;
+        
+        
       default: error = 3b001;
     }
   }

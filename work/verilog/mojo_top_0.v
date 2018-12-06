@@ -83,6 +83,10 @@ module mojo_top_0 (
   reg M_doilose_d, M_doilose_q = 1'h0;
   reg M_redcount_d, M_redcount_q = 1'h0;
   reg M_greencount_d, M_greencount_q = 1'h0;
+  reg [15:0] M_temp10_d, M_temp10_q = 1'h0;
+  reg [15:0] M_temp100_d, M_temp100_q = 1'h0;
+  reg [15:0] M_temp1000_d, M_temp1000_q = 1'h0;
+  reg M_compare_d, M_compare_q = 1'h0;
   
   wire [16-1:0] M_myAlu_fout;
   wire [3-1:0] M_myAlu_error;
@@ -101,11 +105,14 @@ module mojo_top_0 (
   
   always @* begin
     M_lose_d = M_lose_q;
+    M_temp10_d = M_temp10_q;
     M_doilose_d = M_doilose_q;
     M_seven_check_d = M_seven_check_q;
     M_redcount_d = M_redcount_q;
     M_button_state_d = M_button_state_q;
     M_greencount_d = M_greencount_q;
+    M_temp1000_d = M_temp1000_q;
+    M_temp100_d = M_temp100_q;
     M_activation_d = M_activation_q;
     
     M_activation_d = M_edge_detector_out;
@@ -156,15 +163,27 @@ module mojo_top_0 (
     io_led[8+7-:8] = 8'h00;
     io_led[16+7-:8] = 8'h00;
     M_seven_check_d[0+0-:1] = M_dec_ctr_digits[0+3-:4] == 3'h7 || M_dec_ctr_digits[4+3-:4] == 3'h7 || M_dec_ctr_digits[8+3-:4] == 3'h7 || M_dec_ctr_digits[12+3-:4] == 3'h7;
+    M_myAlu_alufn = 6'h22;
+    M_myAlu_a = M_dec_ctr_digits[4+3-:4];
+    M_myAlu_b = 16'h000a;
+    M_temp10_d = M_myAlu_fout;
+    M_myAlu_alufn = 6'h22;
+    M_myAlu_a = M_dec_ctr_digits[8+3-:4];
+    M_myAlu_b = 16'h0064;
+    M_temp100_d = M_myAlu_fout;
+    M_myAlu_alufn = 6'h22;
+    M_myAlu_a = M_dec_ctr_digits[12+3-:4];
+    M_myAlu_b = 16'h03e8;
+    M_temp1000_d = M_myAlu_fout;
     M_myAlu_alufn = 6'h00;
     M_myAlu_a = M_dec_ctr_digits[0+3-:4];
-    M_myAlu_b = M_dec_ctr_digits[4+3-:4] * 4'ha;
+    M_myAlu_b = M_temp10_q;
     M_myAlu_a = M_myAlu_fout;
-    M_myAlu_b = M_dec_ctr_digits[8+3-:4] * 7'h64;
+    M_myAlu_b = M_temp100_q;
     M_myAlu_a = M_myAlu_fout;
-    M_myAlu_b = M_dec_ctr_digits[12+3-:4] * 10'h3e8;
+    M_myAlu_b = M_temp1000_q;
     
-    case (M_dec_ctr_digits[0+3-:4] + M_dec_ctr_digits[4+3-:4] * 4'ha + M_dec_ctr_digits[8+3-:4] * 7'h64 + M_dec_ctr_digits[12+3-:4] * 10'h3e8)
+    case (M_myAlu_fout)
       1'h1: begin
         M_doilose_d = 1'h1;
       end
@@ -330,17 +349,12 @@ module mojo_top_0 (
         M_seven_check_d[1+0-:1] = 1'h0;
       end
     endcase
+    M_myAlu_alufn = 6'h16;
+    M_myAlu_a = button;
+    M_myAlu_b = 1'h0;
+    M_button_state_d = M_myAlu_fout[0+0-:1];
     
-    case (button)
-      1'h0: begin
-        M_button_state_d = 1'h1;
-      end
-      default: begin
-        M_button_state_d = 1'h0;
-      end
-    endcase
-    
-    case (M_dec_ctr_digits[0+3-:4] + M_dec_ctr_digits[4+3-:4] * 4'ha + M_dec_ctr_digits[8+3-:4] * 7'h64 + M_dec_ctr_digits[12+3-:4] * 10'h3e8)
+    case (M_myAlu_fout)
       2'h3: begin
         M_redcount_d = 1'h0;
         M_greencount_d = 1'h0;
@@ -464,6 +478,10 @@ module mojo_top_0 (
       M_doilose_q <= 1'h0;
       M_redcount_q <= 1'h0;
       M_greencount_q <= 1'h0;
+      M_temp10_q <= 1'h0;
+      M_temp100_q <= 1'h0;
+      M_temp1000_q <= 1'h0;
+      M_compare_q <= 1'h0;
     end else begin
       M_seven_check_q <= M_seven_check_d;
       M_activation_q <= M_activation_d;
@@ -475,6 +493,10 @@ module mojo_top_0 (
       M_doilose_q <= M_doilose_d;
       M_redcount_q <= M_redcount_d;
       M_greencount_q <= M_greencount_d;
+      M_temp10_q <= M_temp10_d;
+      M_temp100_q <= M_temp100_d;
+      M_temp1000_q <= M_temp1000_d;
+      M_compare_q <= M_compare_d;
     end
   end
   

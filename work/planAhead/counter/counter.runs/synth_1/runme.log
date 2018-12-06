@@ -75,9 +75,9 @@ Elaborating module <shifter_13>.
 Elaborating module <boolean_14>.
 
 Elaborating module <zvnvalues_15>.
-WARNING:HDLCompiler:1127 - "C:/Users/benja/Documents/mojo/1d/FPGA-7up-Game/work/planAhead/counter/counter.srcs/sources_1/imports/verilog/mojo_top_0.v" Line 98: Assignment to M_myAlu_error ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "C:/Users/benja/Documents/mojo/1d/FPGA-7up-Game/work/planAhead/counter/counter.srcs/sources_1/imports/verilog/mojo_top_0.v" Line 99: Assignment to M_myAlu_overflow ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "C:/Users/benja/Documents/mojo/1d/FPGA-7up-Game/work/planAhead/counter/counter.srcs/sources_1/imports/verilog/mojo_top_0.v" Line 455: Assignment to M_button_pressed_q ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "C:/Users/benja/Documents/mojo/1d/FPGA-7up-Game/work/planAhead/counter/counter.srcs/sources_1/imports/verilog/mojo_top_0.v" Line 102: Assignment to M_myAlu_error ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "C:/Users/benja/Documents/mojo/1d/FPGA-7up-Game/work/planAhead/counter/counter.srcs/sources_1/imports/verilog/mojo_top_0.v" Line 103: Assignment to M_myAlu_overflow ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "C:/Users/benja/Documents/mojo/1d/FPGA-7up-Game/work/planAhead/counter/counter.srcs/sources_1/imports/verilog/mojo_top_0.v" Line 469: Assignment to M_button_pressed_q ignored, since the identifier is never used
 
 =========================================================================
 *                           HDL Synthesis                               *
@@ -93,8 +93,8 @@ WARNING:Xst:647 - Input <spi_mosi> is never used. This port will be preserved an
 WARNING:Xst:647 - Input <spi_sck> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <avr_tx> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <avr_rx_busy> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-INFO:Xst:3210 - "C:/Users/benja/Documents/mojo/1d/FPGA-7up-Game/work/planAhead/counter/counter.srcs/sources_1/imports/verilog/mojo_top_0.v" line 93: Output port <error> of the instance <myAlu> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "C:/Users/benja/Documents/mojo/1d/FPGA-7up-Game/work/planAhead/counter/counter.srcs/sources_1/imports/verilog/mojo_top_0.v" line 93: Output port <overflow> of the instance <myAlu> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:/Users/benja/Documents/mojo/1d/FPGA-7up-Game/work/planAhead/counter/counter.srcs/sources_1/imports/verilog/mojo_top_0.v" line 97: Output port <error> of the instance <myAlu> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:/Users/benja/Documents/mojo/1d/FPGA-7up-Game/work/planAhead/counter/counter.srcs/sources_1/imports/verilog/mojo_top_0.v" line 97: Output port <overflow> of the instance <myAlu> is unconnected or connected to loadless signal.
     Found 1-bit register for signal <M_activation_q>.
     Found 1-bit register for signal <M_button_state_q>.
     Found 1-bit register for signal <M_lose_q>.
@@ -102,21 +102,13 @@ INFO:Xst:3210 - "C:/Users/benja/Documents/mojo/1d/FPGA-7up-Game/work/planAhead/c
     Found 1-bit register for signal <redled>.
     Found 1-bit register for signal <greenled>.
     Found 2-bit register for signal <M_seven_check_q>.
-    Found 9-bit adder for signal <n0182[8:0]> created at line 167.
-    Found 10-bit adder for signal <n0186> created at line 167.
-    Found 10-bit adder for signal <GND_1_o_M_dec_ctr_digits[15]_add_15_OUT> created at line 167.
-    Found 4x10-bit multiplier for signal <M_myAlu_b<13:0>> created at line 165.
-    Found 4x4-bit multiplier for signal <M_dec_ctr_digits[7]_PWR_1_o_MuLt_10_OUT> created at line 167.
-    Found 4x7-bit multiplier for signal <n0166> created at line 167.
-    Found 1-bit tristate buffer for signal <spi_miso> created at line 102
-    Found 1-bit tristate buffer for signal <spi_channel<3>> created at line 102
-    Found 1-bit tristate buffer for signal <spi_channel<2>> created at line 102
-    Found 1-bit tristate buffer for signal <spi_channel<1>> created at line 102
-    Found 1-bit tristate buffer for signal <spi_channel<0>> created at line 102
-    Found 1-bit tristate buffer for signal <avr_rx> created at line 102
+    Found 1-bit tristate buffer for signal <spi_miso> created at line 106
+    Found 1-bit tristate buffer for signal <spi_channel<3>> created at line 106
+    Found 1-bit tristate buffer for signal <spi_channel<2>> created at line 106
+    Found 1-bit tristate buffer for signal <spi_channel<1>> created at line 106
+    Found 1-bit tristate buffer for signal <spi_channel<0>> created at line 106
+    Found 1-bit tristate buffer for signal <avr_rx> created at line 106
     Summary:
-	inferred   3 Multiplier(s).
-	inferred   3 Adder/Subtractor(s).
 	inferred   8 D-type flip-flop(s).
 	inferred   1 Multiplexer(s).
 	inferred   6 Tristate(s).
@@ -192,9 +184,10 @@ Synthesizing Unit <counter_5>.
 	inferred   1 Adder/Subtractor(s).
 	inferred  25 D-type flip-flop(s).
 Unit <counter_5> synthesized.
+WARNING:Xst:2972 - "C:/Users/benja/Documents/mojo/1d/FPGA-7up-Game/work/planAhead/counter/counter.srcs/sources_1/imports/verilog/alu_6.v" line 23. All outputs of instance <add> of block <adder_11> are unconnected in block <alu_6>. Underlying logic will be removed.
 WARNING:Xst:2972 - "C:/Users/benja/Documents/mojo/1d/FPGA-7up-Game/work/planAhead/counter/counter.srcs/sources_1/imports/verilog/alu_6.v" line 37. All outputs of instance <cmp> of block <compare_12> are unconnected in block <alu_6>. Underlying logic will be removed.
 WARNING:Xst:2972 - "C:/Users/benja/Documents/mojo/1d/FPGA-7up-Game/work/planAhead/counter/counter.srcs/sources_1/imports/verilog/alu_6.v" line 51. All outputs of instance <shift> of block <shifter_13> are unconnected in block <alu_6>. Underlying logic will be removed.
-WARNING:Xst:2972 - "C:/Users/benja/Documents/mojo/1d/FPGA-7up-Game/work/planAhead/counter/counter.srcs/sources_1/imports/verilog/alu_6.v" line 64. All outputs of instance <bool> of block <boolean_14> are unconnected in block <alu_6>. Underlying logic will be removed.
+WARNING:Xst:2972 - "C:/Users/benja/Documents/mojo/1d/FPGA-7up-Game/work/planAhead/counter/counter.srcs/sources_1/imports/verilog/alu_6.v" line 79. All outputs of instance <zvn> of block <zvnvalues_15> are unconnected in block <alu_6>. Underlying logic will be removed.
 
 Synthesizing Unit <alu_6>.
     Related source file is "C:/Users/benja/Documents/mojo/1d/FPGA-7up-Game/work/planAhead/counter/counter.srcs/sources_1/imports/verilog/alu_6.v".
@@ -205,10 +198,8 @@ Unit <alu_6> synthesized.
 Synthesizing Unit <adder_11>.
     Related source file is "C:/Users/benja/Documents/mojo/1d/FPGA-7up-Game/work/planAhead/counter/counter.srcs/sources_1/imports/verilog/adder_11.v".
 WARNING:Xst:647 - Input <alufn<5:1>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-    Found 16-bit subtractor for signal <a[15]_b[15]_sub_2_OUT> created at line 26.
-    Found 16-bit adder for signal <a[15]_b[15]_add_0_OUT> created at line 23.
     Summary:
-	inferred   1 Adder/Subtractor(s).
+	no macro.
 Unit <adder_11> synthesized.
 
 Synthesizing Unit <compare_12>.
@@ -221,7 +212,6 @@ Unit <compare_12> synthesized.
 
 Synthesizing Unit <shifter_13>.
     Related source file is "C:/Users/benja/Documents/mojo/1d/FPGA-7up-Game/work/planAhead/counter/counter.srcs/sources_1/imports/verilog/shifter_13.v".
-WARNING:Xst:647 - Input <b<15:5>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <alufn<5:2>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Summary:
 	no macro.
@@ -231,7 +221,6 @@ Synthesizing Unit <boolean_14>.
     Related source file is "C:/Users/benja/Documents/mojo/1d/FPGA-7up-Game/work/planAhead/counter/counter.srcs/sources_1/imports/verilog/boolean_14.v".
 WARNING:Xst:647 - Input <alufn<5:4>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Summary:
-	no macro.
 Unit <boolean_14> synthesized.
 
 Synthesizing Unit <zvnvalues_15>.
@@ -240,6 +229,7 @@ WARNING:Xst:647 - Input <a<14:0>> is never used. This port will be preserved and
 WARNING:Xst:647 - Input <b<14:0>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <alufn<5:1>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Summary:
+	no macro.
 Unit <zvnvalues_15> synthesized.
 
 =========================================================================
@@ -248,17 +238,10 @@ HDL Synthesis Report
 Macro Statistics
 # RAMs                                                 : 1
  16x7-bit single-port Read Only RAM                    : 1
-# Multipliers                                          : 3
- 10x4-bit multiplier                                   : 1
- 4x4-bit multiplier                                    : 1
- 7x4-bit multiplier                                    : 1
-# Adders/Subtractors                                   : 11
- 10-bit adder                                          : 2
- 16-bit addsub                                         : 1
+# Adders/Subtractors                                   : 7
  18-bit adder                                          : 1
  25-bit adder                                          : 1
  4-bit adder                                           : 5
- 9-bit adder                                           : 1
 # Registers                                            : 15
  1-bit register                                        : 7
  18-bit register                                       : 1
@@ -273,7 +256,7 @@ Macro Statistics
 # Tristates                                            : 6
  1-bit tristate buffer                                 : 6
 # Xors                                                 : 1
- 1-bit xor2                                            : 1
+ 16-bit xor2                                           : 1
 
 =========================================================================
 
@@ -281,7 +264,6 @@ Macro Statistics
 *                       Advanced HDL Synthesis                          *
 =========================================================================
 
-WARNING:Xst:2973 - All outputs of instance <myAlu/zvn> of block <zvnvalues_15> are unconnected in block <mojo_top_0>. Underlying logic will be removed.
 
 Synthesizing (advanced) Unit <counter_5>.
 The following registers are absorbed into counter <M_ctr_q>: 1 register on signal <M_ctr_q>.
@@ -294,13 +276,6 @@ Unit <counter_7> synthesized (advanced).
 Synthesizing (advanced) Unit <decimal_counter_10>.
 The following registers are absorbed into counter <M_val_q>: 1 register on signal <M_val_q>.
 Unit <decimal_counter_10> synthesized (advanced).
-
-Synthesizing (advanced) Unit <mojo_top_0>.
-	The following adders/subtractors are grouped into adder tree <Madd_GND_1_o_M_dec_ctr_digits[15]_add_15_OUT1> :
- 	<Madd_n0182[8:0]> in block <mojo_top_0>, 	<Madd_n0186> in block <mojo_top_0>, 	<Madd_GND_1_o_M_dec_ctr_digits[15]_add_15_OUT> in block <mojo_top_0>.
-	Multiplier <Mmult_n0166> in block <mojo_top_0> and adder/subtractor <ADDER_FOR_MULTADD_Madd1> in block <mojo_top_0> are combined into a MAC<Maddsub_n0166>.
-	Multiplier <Mmult_M_dec_ctr_digits[7]_PWR_1_o_MuLt_10_OUT> in block <mojo_top_0> and adder/subtractor <ADDER_FOR_MULTADD_Madd> in block <mojo_top_0> are combined into a MAC<Maddsub_M_dec_ctr_digits[7]_PWR_1_o_MuLt_10_OUT>.
-Unit <mojo_top_0> synthesized (advanced).
 
 Synthesizing (advanced) Unit <seven_seg_8>.
 INFO:Xst:3218 - HDL ADVISOR - The RAM <Mram_segs> will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
@@ -322,14 +297,7 @@ Advanced HDL Synthesis Report
 Macro Statistics
 # RAMs                                                 : 1
  16x7-bit single-port distributed Read Only RAM        : 1
-# MACs                                                 : 2
- 4x4-to-10-bit MAC                                     : 1
- 7x4-to-10-bit MAC                                     : 1
-# Multipliers                                          : 1
- 10x4-bit multiplier                                   : 1
-# Adders/Subtractors                                   : 3
- 10-bit adder                                          : 1
- 16-bit addsub                                         : 1
+# Adders/Subtractors                                   : 1
  4-bit adder                                           : 1
 # Counters                                             : 6
  18-bit up counter                                     : 1
@@ -339,14 +307,17 @@ Macro Statistics
  Flip-Flops                                            : 13
 # Logic shifters                                       : 1
  31-bit shifter logical right                          : 1
+# Xors                                                 : 1
+ 16-bit xor2                                           : 1
 
 =========================================================================
 
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
-WARNING:Xst:2170 - Unit mojo_top_0 : the following signal(s) form a combinatorial loop: myAlu/add/Maddsub_out_cy<13>, myAlu/add/Maddsub_out_cy<10>, myAlu/add/Maddsub_out_cy<9>, myAlu/add/Maddsub_out_cy<11>, myAlu/add/Maddsub_out_cy<12>, myAlu/add/Maddsub_out_cy<5>, myAlu/add/Maddsub_out_cy<4>, M_myAlu_fout<15>, M_myAlu_fout[15]_GND_1_o_equal_68_o, myAlu/add/Maddsub_out_lut<3>, myAlu/add/Maddsub_out_cy<3>, myAlu/add/Maddsub_out_cy<8>, M_seven_check_d<1>, myAlu/add/Maddsub_out_cy<7>, myAlu/add/Maddsub_out_cy<14>, myAlu/add/Maddsub_out_cy<6>, M_myAlu_fout<3>.
-WARNING:Xst:2170 - Unit mojo_top_0 : the following signal(s) form a combinatorial loop: M_myAlu_fout<15>.
+WARNING:Xst:1293 - FF/Latch <M_seven_check_q_1> has a constant value of 0 in block <mojo_top_0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <M_greencount_q> has a constant value of 0 in block <mojo_top_0>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <M_doilose_q> in Unit <mojo_top_0> is equivalent to the following FF/Latch, which will be removed : <M_button_state_q> 
 
 Optimizing unit <mojo_top_0> ...
 INFO:Xst:2261 - The FF/Latch <ctr/M_ctr_q_16> in Unit <mojo_top_0> is equivalent to the following FF/Latch, which will be removed : <seg/ctr/M_ctr_q_16> 
@@ -370,20 +341,17 @@ INFO:Xst:2261 - The FF/Latch <seg/ctr/M_ctr_q_17> in Unit <mojo_top_0> is equiva
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 0) on block mojo_top_0, actual ratio is 3.
+Found area constraint ratio of 100 (+ 0) on block mojo_top_0, actual ratio is 2.
+FlipFlop reset_cond/M_stage_q_3 has been replicated 1 time(s)
 
 Final Macro Processing ...
-
-Processing Unit <mojo_top_0> :
-INFO:Xst:741 - HDL ADVISOR - A 4-bit shift register was found for signal <reset_cond/M_stage_q_3> and currently occupies 4 logic cells (2 slices). Removing the set/reset logic would take advantage of SRL32 (and derived) primitives and reduce this to 1 logic cells (1 slices). Evaluate if the set/reset can be removed for this simple shift register. The majority of simple pipeline structures do not need to be set/reset operationally.
-Unit <mojo_top_0> processed.
 
 =========================================================================
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 54
- Flip-Flops                                            : 54
+# Registers                                            : 52
+ Flip-Flops                                            : 52
 
 =========================================================================
 
@@ -404,13 +372,11 @@ Partition Implementation Status
 
 Clock Information:
 ------------------
------------------------------------+-------------------------------+-------+
-Clock Signal                       | Clock buffer(FF name)         | Load  |
------------------------------------+-------------------------------+-------+
-clk                                | BUFGP                         | 56    |
-Maddsub_out_cy<0>                  | NONE(ADDER_FOR_MULTADD_Madd21)| 1     |
------------------------------------+-------------------------------+-------+
-INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+clk                                | BUFGP                  | 52    |
+-----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
 ----------------------------------------
@@ -420,9 +386,9 @@ Timing Summary:
 ---------------
 Speed Grade: -2
 
-   Minimum period: 19.855ns (Maximum Frequency: 50.365MHz)
-   Minimum input arrival time before clock: 3.526ns
-   Maximum output required time after clock: 7.374ns
+   Minimum period: 4.815ns (Maximum Frequency: 207.684MHz)
+   Minimum input arrival time before clock: 3.563ns
+   Maximum output required time after clock: 7.306ns
    Maximum combinational path delay: No path found
 
 =========================================================================

@@ -47,6 +47,10 @@ module mojo_top (
       dff doilose;
       dff redcount;
       dff greencount;
+      dff temp10[16];
+      dff temp100[16];
+      dff temp1000[16];
+      dff compare;
     }
   }
   //import the alu
@@ -116,19 +120,42 @@ module mojo_top (
     // per digit check for 7
     seven_check.d[0] = dec_ctr.digits[0] == 7 || dec_ctr.digits[1] == 7 || dec_ctr.digits[2] == 7 || dec_ctr.digits[3] == 7;
     
+    //make temp10 = dec_ctr.digits[1] * 10
+    myAlu.alufn = 6b100010;  //use shifter
+    myAlu.a = dec_ctr.digits[1];
+    myAlu.b = 16b1010;    // 10 in binary is 16b1010
+    temp10.d = myAlu.fout;
+    
+    
+    //make temp100 = dec_ctr.digits[2] * 100
+    myAlu.alufn = 6b100010;  //use shifter
+    myAlu.a = dec_ctr.digits[2];
+    myAlu.b = 16b1100100;    // 1000 in binary is 16b1100100
+    temp100.d = myAlu.fout;
+    
+    
+    //make temp1000 = dec_ctr.digits[3] * 1000
+    myAlu.alufn = 6b100010;  //use shifter
+    myAlu.a = dec_ctr.digits[3];
+    myAlu.b = 16b1111101000;    // 1000 in binary is 16b1111101000
+    temp1000.d = myAlu.fout;
+    
+    
+    
+    
     // use alu to add 4 digits from decimal counter together
     myAlu.alufn = 6b0;
     myAlu.a = dec_ctr.digits[0];
-    myAlu.b = dec_ctr.digits[1] * 10;
+    myAlu.b = temp10.q;
     myAlu.a = myAlu.fout;
-    myAlu.b = dec_ctr.digits[2] * 100;
+    myAlu.b = temp100.q;
     myAlu.a = myAlu.fout;
-    myAlu.b = dec_ctr.digits[3] * 1000;
+    myAlu.b = temp1000.q;
     // now myAlu.fout should = dec_ctr.digits[0] + dec_ctr.digits[1] * 10 + dec_ctr.digits[2] * 100 + dec_ctr.digits[3] * 1000
     
     /////////////IF YOU PRESS ON THESE NUMBERS, YOU LOSE!
-    case(dec_ctr.digits[0] + dec_ctr.digits[1] * 10 + dec_ctr.digits[2] * 100 + dec_ctr.digits[3] * 1000) {
-    //case(myAlu.fout) {
+    //case(dec_ctr.digits[0] + dec_ctr.digits[1] * 10 + dec_ctr.digits[2] * 100 + dec_ctr.digits[3] * 1000) {
+    case(myAlu.fout) {
       1: doilose.d = 1;
       2: doilose.d = 1;
       3: doilose.d = 1;
@@ -203,16 +230,22 @@ module mojo_top (
     // seven up game code /////////////////////////////////////////////////////////////////////////////////////////////
     
     //button state
-    case(button) {  //testing when the button is pressed
-      0:
-        button_state.d = 1;  // tracks when button is pressed - because the button is a active low. 
-      default:
-        button_state.d = 0;
-    }
+    //makes use of ALU boolean here, we will do XOR between the button as a, and 1 as b. 
+    //if output is 1, we know that the button is pressed. (that a is 0 -> this is because the button is a active low)
+    //hence we can assign button state to be equal to output of the alu.
+    // XOR truth table = a:0  b:1 x:1
+    
+    
+    myAlu.alufn = 6b010110;  //  we use boolean, XOR logic
+    myAlu.a = button;
+    myAlu.b = 0;
+    button_state.d = myAlu.fout[0];
+    
+    
     
     /////RESET THE REDLED & GREENLED TO TURN IT OFF
-    case(dec_ctr.digits[0] + dec_ctr.digits[1] * 10 + dec_ctr.digits[2] * 100 + dec_ctr.digits[3] * 1000){
-    //case(myAlu.fout){
+    //case(dec_ctr.digits[0] + dec_ctr.digits[1] * 10 + dec_ctr.digits[2] * 100 + dec_ctr.digits[3] * 1000){
+    case(myAlu.fout){
       3:  redcount.d = 0;
           greencount.d = 0;
       6:  redcount.d = 0;
