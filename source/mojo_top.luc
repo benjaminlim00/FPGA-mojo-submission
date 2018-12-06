@@ -235,14 +235,6 @@ module mojo_top (
     //hence we can assign button state to be equal to output of the alu.
     // XOR truth table = a:0  b:1 x:1
     
-    
-    myAlu.alufn = 6b010110;  //  we use boolean, XOR logic
-    myAlu.a = button;
-    myAlu.b = 0;
-    button_state.d = myAlu.fout[0];
-    
-    
-    
     /////RESET THE REDLED & GREENLED TO TURN IT OFF
     //case(dec_ctr.digits[0] + dec_ctr.digits[1] * 10 + dec_ctr.digits[2] * 100 + dec_ctr.digits[3] * 1000){
     case(myAlu.fout){
@@ -281,6 +273,10 @@ module mojo_top (
       96:  redcount.d = 0;
       99:  redcount.d = 0;
     }
+    myAlu.alufn = 6b010110;  //  we use boolean, XOR logic
+    myAlu.a = button;
+    myAlu.b = 0;
+    button_state.d = myAlu.fout[0];
     
     //lose if we never press the button when on a 7up number.
     if ((button_state.q == 0 && seven_check.q[0] == 1) || (button_state.q == 0 && seven_check.q[1] == 1)) {
